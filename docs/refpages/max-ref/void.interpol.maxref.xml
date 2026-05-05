@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet href="./c74ref.xsl" type="text/xsl"?>
+
+<c74object name="void.interpol" module="max" category="Structure-Void">
+
+	<digest>
+		Enhanced line with 16 parametric curve types
+	</digest>
+
+	<description>
+		Generate timed numerical ramps between breakpoints with selectable curve types per segment.
+		16 curve types, most with adjustable parameters. Drop-in compatible with <o>line</o> and <o>function</o> output.
+	</description>
+
+	<!--METADATA-->
+	<metadatalist>
+		<metadata name="author">Julien Bayle / Structure-Void</metadata>
+		<metadata name="tag">Structure-Void</metadata>
+		<metadata name="tag">VOID</metadata>
+		<metadata name="tag">interpolation</metadata>
+		<metadata name="tag">ramp</metadata>
+		<metadata name="tag">curve</metadata>
+		<metadata name="tag">easing</metadata>
+		<metadata name="tag">bezier</metadata>
+	</metadatalist>
+
+	<!--ARGUMENTS-->
+	<objarglist>
+		<objarg name="initial-value" optional="1" type="float">
+			<digest>Initial output value</digest>
+		</objarg>
+		<objarg name="grain" optional="1" type="float" units="ms">
+			<digest>Output rate in milliseconds</digest>
+		</objarg>
+		<objarg name="default-curve" optional="1" type="symbol">
+			<digest>Default curve type</digest>
+		</objarg>
+	</objarglist>
+
+	<!--MESSAGES-->
+	<methodlist>
+
+		<method name="float">
+			<arglist>
+				<arg name="value" optional="0" type="float" />
+			</arglist>
+			<digest>Jump output to value</digest>
+		</method>
+
+		<method name="int">
+			<arglist>
+				<arg name="value" optional="0" type="int" />
+			</arglist>
+			<digest>Jump output to value</digest>
+		</method>
+
+		<method name="list">
+			<arglist>
+				<arg name="value" optional="0" type="float" />
+				<arg name="time" optional="1" type="float" units="ms" />
+				<arg name="curve" optional="1" type="symbol" />
+				<arg name="curve-params" optional="1" type="float" />
+			</arglist>
+			<digest>Ramp to target with optional curve and params</digest>
+			<description>
+				Accepts <o>line</o>-style breakpoint syntax with optional curve and parameters per segment.
+				Each segment is described by: value time [curve_name [param1 [param2 [param3 [param4]]]]].
+				Each curve has a fixed number of expected parameters (0 to 4); if omitted, defaults are used.
+			</description>
+		</method>
+
+		<method name="stop">
+			<digest>Stop interpolation and clear breakpoints</digest>
+		</method>
+
+		<method name="pause">
+			<digest>Pause current interpolation</digest>
+		</method>
+
+		<method name="resume">
+			<digest>Resume a paused interpolation</digest>
+		</method>
+
+		<method name="set">
+			<arglist>
+				<arg name="value" optional="0" type="float" />
+			</arglist>
+			<digest>Set value silently (no output)</digest>
+		</method>
+
+		<method name="grain">
+			<arglist>
+				<arg name="ms" optional="0" type="float" units="ms" />
+			</arglist>
+			<digest>Set output rate</digest>
+		</method>
+
+		<method name="curve">
+			<arglist>
+				<arg name="type" optional="0" type="symbol" />
+				<arg name="params" optional="1" type="float" />
+			</arglist>
+			<digest>Set default curve and its parameters</digest>
+		</method>
+
+		<method name="linear">
+			<digest>Force linear curve for incoming list (no params)</digest>
+		</method>
+		<method name="exp">
+			<arglist>
+				<arg name="exponent" optional="1" type="float" />
+			</arglist>
+			<digest>Force exponential curve (default exponent 3.0)</digest>
+		</method>
+		<method name="log">
+			<arglist>
+				<arg name="intensity" optional="1" type="float" />
+			</arglist>
+			<digest>Force logarithmic curve (default 3.0)</digest>
+		</method>
+		<method name="sine">
+			<digest>Force quarter-sine curve (no params)</digest>
+		</method>
+		<method name="cosine">
+			<digest>Force smooth cosine sigmoid (no params)</digest>
+		</method>
+		<method name="power">
+			<arglist>
+				<arg name="exponent" optional="1" type="float" />
+			</arglist>
+			<digest>Force power curve t^n (default n=2.0)</digest>
+		</method>
+		<method name="square">
+			<digest>Force t^2 (no params, alias of power 2)</digest>
+		</method>
+		<method name="sqrt">
+			<digest>Force sqrt(t) (no params, alias of power 0.5)</digest>
+		</method>
+		<method name="ease_in">
+			<arglist>
+				<arg name="exponent" optional="1" type="float" />
+			</arglist>
+			<digest>Force cubic-style ease-in (default exponent 3.0)</digest>
+		</method>
+		<method name="ease_out">
+			<arglist>
+				<arg name="exponent" optional="1" type="float" />
+			</arglist>
+			<digest>Force ease-out (default 3.0)</digest>
+		</method>
+		<method name="ease_in_out">
+			<arglist>
+				<arg name="exponent" optional="1" type="float" />
+			</arglist>
+			<digest>Force ease-in-out (default 3.0)</digest>
+		</method>
+		<method name="bezier">
+			<arglist>
+				<arg name="x1" optional="1" type="float" />
+				<arg name="y1" optional="1" type="float" />
+				<arg name="x2" optional="1" type="float" />
+				<arg name="y2" optional="1" type="float" />
+			</arglist>
+			<digest>Force cubic Bezier (CSS-style x1 y1 x2 y2)</digest>
+		</method>
+		<method name="bezier2">
+			<arglist>
+				<arg name="cx" optional="1" type="float" />
+				<arg name="cy" optional="1" type="float" />
+			</arglist>
+			<digest>Force quadratic Bezier (1 control point cx cy)</digest>
+		</method>
+		<method name="sigmoid">
+			<arglist>
+				<arg name="steepness" optional="1" type="float" />
+			</arglist>
+			<digest>Force logistic sigmoid (default steepness 5.0)</digest>
+		</method>
+		<method name="bend">
+			<arglist>
+				<arg name="amount" optional="1" type="float" />
+			</arglist>
+			<digest>Force curve~ style bend (-1..1, 0 = linear)</digest>
+		</method>
+		<method name="spring">
+			<arglist>
+				<arg name="oscillations" optional="1" type="float" />
+			</arglist>
+			<digest>Force damped spring (default 2 oscillations)</digest>
+		</method>
+		<method name="bounce">
+			<arglist>
+				<arg name="bounces" optional="1" type="float" />
+			</arglist>
+			<digest>Force bouncy approach (default 3 bounces)</digest>
+		</method>
+		<method name="elastic">
+			<arglist>
+				<arg name="oscillations" optional="1" type="float" />
+			</arglist>
+			<digest>Force elastic ease (default 2 oscillations)</digest>
+		</method>
+
+	</methodlist>
+
+	<!--ATTRIBUTES-->
+	<attributelist>
+		<attribute name="grain" get="1" set="1" type="float" size="1">
+			<digest>Output grain in milliseconds</digest>
+		</attribute>
+	</attributelist>
+
+	<!--OUTPUT-->
+	<misc name="Output">
+		<entry name="left outlet">
+			<digest>Interpolated value (float)</digest>
+		</entry>
+		<entry name="right outlet">
+			<digest>End-of-ramp bang</digest>
+		</entry>
+	</misc>
+
+	<misc name="Curve types">
+		<entry name="linear">
+			<digest>No params. y = t</digest>
+		</entry>
+		<entry name="exp">
+			<digest>1 param: exponent k (default 3.0). Slow start, fast end.</digest>
+		</entry>
+		<entry name="log">
+			<digest>1 param: intensity k (default 3.0). Fast start, slow end.</digest>
+		</entry>
+		<entry name="sine">
+			<digest>No params. Quarter sine.</digest>
+		</entry>
+		<entry name="cosine">
+			<digest>No params. Smooth S-curve.</digest>
+		</entry>
+		<entry name="power">
+			<digest>1 param: exponent n (default 2.0). y = t^n.</digest>
+		</entry>
+		<entry name="square">
+			<digest>No params. y = t^2.</digest>
+		</entry>
+		<entry name="sqrt">
+			<digest>No params. y = sqrt(t).</digest>
+		</entry>
+		<entry name="ease_in">
+			<digest>1 param: exponent (default 3.0). y = t^n.</digest>
+		</entry>
+		<entry name="ease_out">
+			<digest>1 param: exponent (default 3.0). y = 1-(1-t)^n.</digest>
+		</entry>
+		<entry name="ease_in_out">
+			<digest>1 param: exponent (default 3.0). Symmetric ease.</digest>
+		</entry>
+		<entry name="bezier">
+			<digest>4 params: x1 y1 x2 y2. CSS cubic-bezier curve.</digest>
+		</entry>
+		<entry name="bezier2">
+			<digest>2 params: cx cy. Quadratic bezier with 1 control point.</digest>
+		</entry>
+		<entry name="sigmoid">
+			<digest>1 param: steepness (default 5.0). Logistic S-curve.</digest>
+		</entry>
+		<entry name="bend">
+			<digest>1 param: amount in [-1, 1] (default 0). curve~ style: 0 = linear.</digest>
+		</entry>
+		<entry name="spring">
+			<digest>1 param: oscillations (default 2). Damped overshoot.</digest>
+		</entry>
+		<entry name="bounce">
+			<digest>1 param: bounces (default 3). Approach with bounces.</digest>
+		</entry>
+		<entry name="elastic">
+			<digest>1 param: oscillations (default 2). Elastic ease.</digest>
+		</entry>
+	</misc>
+
+	<!--SEEALSO-->
+	<seealsolist>
+		<seealso name="line" />
+		<seealso name="function" />
+		<seealso name="curve~" />
+		<seealso name="line~" />
+		<seealso name="ease" />
+	</seealsolist>
+
+</c74object>
