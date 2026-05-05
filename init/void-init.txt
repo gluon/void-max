@@ -1,0 +1,2 @@
+; void-init.txt — chargé automatiquement au démarrage de Max
+; Pas d'alias pour l'instant
