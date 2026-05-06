@@ -3,24 +3,35 @@
 	"displayname": "VOID",
 	"version": "0.1.0",
 	"author": "Julien Bayle / Structure-Void",
-	"description": "VOID — A collection of Max/MSP/Jitter externals by Structure-Void",
+	"description": "VOID \u2014 A collection of Max/MSP/Jitter externals by Structure-Void",
 	"homepatcher": "void.overview.maxpat",
 	"max_version_min": "8.0",
 	"max_version_max": "none",
 	"os": {
 		"macintosh": {
-			"platform": ["x64", "aarch64"],
+			"platform": [
+				"x64",
+				"aarch64"
+			],
 			"min_version": "10.13"
 		},
 		"windows": {
-			"platform": ["x64"],
+			"platform": [
+				"x64"
+			],
 			"min_version": "none"
 		}
 	},
 	"package_extra": {
 		"reverse_url": "net.structure-void.void",
-		"copyright": "© 2025-2026 Julien Bayle / Structure-Void"
+		"copyright": "\u00a9 2025-2026 Julien Bayle / Structure-Void"
 	},
 	"website": "https://structure-void.com",
-	"tags": ["void", "structure-void", "audio", "jitter", "messages"]
+	"tags": [
+		"void",
+		"structure-void",
+		"audio",
+		"jitter",
+		"messages"
+	]
 }
