@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+
+<c74object name="void.net.localip"
+		   category="Utilities, Network">
+
+  <!-- ========================================================= -->
+  <!-- DIGEST -->
+  <!-- ========================================================= -->
+
+  <digest>
+	Output the local IPv4 address of the machine.
+  </digest>
+
+  <!-- ========================================================= -->
+  <!-- DESCRIPTION -->
+  <!-- ========================================================= -->
+
+  <description>
+	void.net.localip outputs the local IPv4 address of the host machine,
+	along with the associated network interface name.
+
+	The object performs a one-shot scan of the available network interfaces
+	and returns the first valid non-loopback IPv4 address found on an active
+	interface.
+
+	This object is macOS-only and is designed to be lightweight, stateless,
+	and deterministic.
+  </description>
+
+  <!-- ========================================================= -->
+  <!-- INLETS -->
+  <!-- ========================================================= -->
+
+  <inletlist>
+	<inlet index="1" type="message">
+	  <digest>
+		Trigger IP lookup
+	  </digest>
+	  <description>
+		Sending a bang triggers a scan of the network interfaces and outputs
+		the local IPv4 address and the corresponding interface name.
+	  </description>
+	</inlet>
+  </inletlist>
+
+  <!-- ========================================================= -->
+  <!-- OUTLETS -->
+  <!-- ========================================================= -->
+
+  <outletlist>
+
+	<outlet index="1" type="symbol">
+	  <digest>
+		Local IPv4 address
+	  </digest>
+	  <description>
+		Outputs the detected local IPv4 address (for example: 192.168.1.42).
+
+		If no valid address is found, outputs 0.0.0.0.
+	  </description>
+	</outlet>
+
+	<outlet index="2" type="symbol">
+	  <digest>
+		Network interface name
+	  </digest>
+	  <description>
+		Outputs the name of the network interface associated with the IPv4
+		address (for example: en0, en1).
+
+		If no interface is found, outputs none.
+	  </description>
+	</outlet>
+
+  </outletlist>
+
+  <!-- ========================================================= -->
+  <!-- ARGUMENTS -->
+  <!-- ========================================================= -->
+
+  <objarglist>
+	<!-- no arguments -->
+  </objarglist>
+
+  <!-- ========================================================= -->
+  <!-- ATTRIBUTES -->
+  <!-- ========================================================= -->
+
+  <attributelist>
+	<!-- no attributes -->
+  </attributelist>
+
+  <!-- ========================================================= -->
+  <!-- SEE ALSO -->
+  <!-- ========================================================= -->
+
+  <seealsolist>
+	<seealso name="void.net.hostname"/>
+	<seealso name="udpsend"/>
+	<seealso name="udpreceive"/>
+  </seealsolist>
+
+</c74object>
