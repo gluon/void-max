@@ -1,2 +1,54 @@
+# ──────────────────────────────────────────────────────────────────────────
+# void-max / .gitignore
+#
+# This is a SOURCES-ONLY repo. Binaries are never committed here:
+# they are built and packaged by GitHub Actions on tagged releases,
+# then attached as zip archives to the GitHub Release page.
+# ──────────────────────────────────────────────────────────────────────────
+
+# ─── Max external binaries (built artifacts) ─────────────────────────────
+# .mxo is a directory bundle on macOS; both forms ignored
+*.mxo
+*.mxo/
+externals/*.mxo
+externals/*.mxo/
+externals/**/*.mxo
+externals/**/*.mxo/
+
+# Windows
+*.mxe64
+externals/*.mxe64
+
+# Other potential build outputs
+*.so
+*.dylib
+*.dll
+
+# ─── Build directories ──────────────────────────────────────────────────
+build/
+dist/
+out/
+.build/
+
+# ─── IDE / editor ───────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.xcodeproj/
+*.xcworkspace/
+xcuserdata/
+DerivedData/
+
+# ─── OS noise ───────────────────────────────────────────────────────────
 .DS_Store
+Thumbs.db
+desktop.ini
 *.tmp
+*.swp
+*.bak
+
+# ─── CMake artifacts (in case anyone runs cmake here by accident) ───────
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*_generated_*
