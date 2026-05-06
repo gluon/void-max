@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+
+<c74object name="void.net.hostname"
+		   category="Utilities, Network">
+
+  <!-- ========================================================= -->
+  <!-- DIGEST -->
+  <!-- ========================================================= -->
+
+  <digest>
+	Output the hostname of the machine.
+  </digest>
+
+  <!-- ========================================================= -->
+  <!-- DESCRIPTION -->
+  <!-- ========================================================= -->
+
+  <description>
+	void.net.hostname outputs the system hostname of the host machine.
+
+	The hostname is retrieved using a direct system call and typically
+	corresponds to the computer name configured in the operating system.
+	The output may or may not include the .local suffix, depending on the
+	system configuration.
+
+	This object is macOS-only and is designed to be lightweight, stateless,
+	and deterministic.
+  </description>
+
+  <!-- ========================================================= -->
+  <!-- INLETS -->
+  <!-- ========================================================= -->
+
+  <inletlist>
+	<inlet index="1" type="message">
+	  <digest>
+		Trigger hostname lookup
+	  </digest>
+	  <description>
+		Sending a bang outputs the current system hostname.
+	  </description>
+	</inlet>
+  </inletlist>
+
+  <!-- ========================================================= -->
+  <!-- OUTLETS -->
+  <!-- ========================================================= -->
+
+  <outletlist>
+
+	<outlet index="1" type="symbol">
+	  <digest>
+		Hostname
+	  </digest>
+	  <description>
+		Outputs the hostname of the machine (for example: MacBook-Pro,
+		MBP-Julien, or MBP-Julien.local).
+
+		If the hostname cannot be retrieved, outputs unknown.
+	  </description>
+	</outlet>
+
+  </outletlist>
+
+  <!-- ========================================================= -->
+  <!-- ARGUMENTS -->
+  <!-- ========================================================= -->
+
+  <objarglist>
+	<!-- no arguments -->
+  </objarglist>
+
+  <!-- ========================================================= -->
+  <!-- ATTRIBUTES -->
+  <!-- ========================================================= -->
+
+  <attributelist>
+	<!-- no attributes -->
+  </attributelist>
+
+  <!-- ========================================================= -->
+  <!-- SEE ALSO -->
+  <!-- ========================================================= -->
+
+  <seealsolist>
+	<seealso name="void.net.localip"/>
+	<seealso name="udpsend"/>
+	<seealso name="udpreceive"/>
+  </seealsolist>
+
+</c74object>
